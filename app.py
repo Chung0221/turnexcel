@@ -11,7 +11,7 @@ import base64
 st.set_page_config(page_title="智慧表格截圖轉 Excel", page_icon="📊", layout="centered")
 st.markdown("<script>var meta = document.createElement('meta'); meta.name = 'google'; meta.content = 'notranslate'; document.getElementsByTagName('head')[0].appendChild(meta);</script>", unsafe_allow_html=True)
 
-st.title("📸 智慧表格截圖轉 Excel (精準對齊版)")
+st.title("智慧表格截圖轉 Excel (精準對齊版)")
 st.write("已優化文字聚合演算法，防止「日期、時間、欄位名稱」因空格或線條而被拆散錯位。")
 
 # 上傳檔案區塊
@@ -21,7 +21,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption="已上傳的表格預覽", use_container_width=True)
     
-    if st.button("🚀 開始精準編排並轉換"):
+    if st.button("開始編排並轉換"):
         with st.spinner("正在聚合文字並對齊欄位，請稍候..."):
             try:
                 # 1. 將圖片轉為 base64 編碼
@@ -121,8 +121,8 @@ if uploaded_file is not None:
                             # 轉換為 DataFrame
                             df = pd.DataFrame(padded_table)
                             
-                            st.success("🎉 智慧優化編排完成！")
-                            st.subheader("📝 修正後的表格預覽")
+                            st.success("智慧優化編排完成！")
+                            st.subheader("修正後的表格預覽")
                             st.dataframe(df, use_container_width=True)
                             
                             # 寫入 Excel
@@ -132,15 +132,15 @@ if uploaded_file is not None:
                             excel_data = excel_buffer.getvalue()
                             
                             st.download_button(
-                                label="📥 下載修正後的 Excel 檔案",
+                                label="下載修正後的 Excel 檔案",
                                 data=excel_data,
                                 file_name="智慧精準表格結果.xlsx",
                                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                             )
                         else:
-                            st.warning("⚠️ 沒能成功分析出表格文字。")
+                            st.warning("沒能成功分析出表格文字。")
                     else:
-                        st.warning("⚠️ 無法獲取圖片的結構化坐標，請確保截圖清晰。")
+                        st.warning("無法獲取圖片的結構化坐標，請確保截圖清晰。")
                 else:
                     st.error(f"API 失敗：{res_json.get('ErrorMessage')}")
             except Exception as e:
