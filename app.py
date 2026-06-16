@@ -1,12 +1,24 @@
-python
 import streamlit as st
 import easyocr
 import pandas as pd
 from PIL import Image
 import io
 
-# 設定網頁標題
+# 1. 設定網頁標題（必須是 Streamlit 的第一個指令）
 st.set_page_config(page_title="線上截圖轉 Excel", page_icon="📊", layout="centered")
+
+# 2. 注入防瀏覽器翻譯的 JavaScript（解決 removeChild 錯誤）
+st.markdown(
+    """
+    <script>
+        var meta = document.createElement('meta');
+        meta.name = 'google';
+        meta.content = 'notranslate';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+    </script>
+    """,
+    unsafe_allow_html=True
+)
 
 st.title("📸 截圖轉 Excel 線上小工具")
 st.write("上傳截圖，系統會自動辨識文字並轉換為 Excel 檔案供你下載。")
