@@ -11,7 +11,7 @@ import base64
 st.set_page_config(page_title="智慧表格截圖轉 Excel", page_icon="📊", layout="centered")
 st.markdown("<script>var meta = document.createElement('meta'); meta.name = 'google'; meta.content = 'notranslate'; document.getElementsByTagName('head')[0].appendChild(meta);</script>", unsafe_allow_html=True)
 
-st.title("智慧表格截圖轉 Excel (精準對齊版)")
+st.title("智慧表格截圖轉 Excel")
 st.write("已優化文字聚合演算法，防止「日期、時間、欄位名稱」因空格或線條而被拆散錯位。")
 
 # 上傳檔案區塊
