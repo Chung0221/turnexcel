@@ -10,7 +10,7 @@ import base64
 st.set_page_config(page_title="線上截圖轉 Excel", page_icon="📊", layout="centered")
 st.markdown("<script>var meta = document.createElement('meta'); meta.name = 'google'; meta.content = 'notranslate'; document.getElementsByTagName('head')[0].appendChild(meta);</script>", unsafe_allow_html=True)
 
-st.title("📸 截圖轉 Excel 線上小工具 (雲端穩定版)")
+st.title("截圖轉 Excel 線上小工具")
 st.write("上傳截圖，系統會自動辨識文字並轉換為 Excel 檔案供你下載。")
 
 # 上傳檔案區塊
@@ -20,7 +20,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption="已上傳的截圖預覽", use_container_width=True)
     
-    if st.button("🚀 開始辨識並轉換"):
+    if st.button("開始辨識並轉換"):
         with st.spinner("免費雲端 API 正在努力辨識圖片中，請稍候..."):
             try:
                 # 1. 將圖片轉為 base64 編碼
@@ -64,13 +64,13 @@ if uploaded_file is not None:
                 if len(text_lines) == 0:
                     st.warning("⚠️ 圖片中似乎沒有偵測到任何繁體中文或英文文字，請換一張清晰一點的截圖。")
                 else:
-                    st.success("🎉 辨識完成！")
+                    st.success("辨識完成！")
                     
                     # 轉成 DataFrame
                     df = pd.DataFrame(text_lines, columns=["辨識文字"])
                     
                     # 預覽辨識結果
-                    st.subheader("📝 辨識到的文字預覽")
+                    st.subheader("辨識到的文字預覽")
                     st.dataframe(df, use_container_width=True)
                     
                     # 寫入記憶體
@@ -81,7 +81,7 @@ if uploaded_file is not None:
                     
                     # 下載按鈕
                     st.download_button(
-                        label="📥 下載 Excel 檔案",
+                        label="下載 Excel 檔案",
                         data=excel_data,
                         file_name="截圖辨識結果.xlsx",
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
