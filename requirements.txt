@@ -1,0 +1,6 @@
+text
+streamlit
+easyocr
+pandas
+openpyxl
+Pillow
